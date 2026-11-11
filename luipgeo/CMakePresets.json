@@ -1,0 +1,85 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "arm-debug",
+      "displayName": "ARM Debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/arm-debug",
+      "toolchainFile": "${sourceDir}/toolchain/toolchain.cmake",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+	      "CURL_USE_LIBPSL": "OFF",
+        "CURL_DISABLE_INSTALL": "ON",
+        "CURL_ZSTD": "OFF",
+        "BUILD_SHARED_LIBS": "OFF",
+        "BUILD_STATIC_CURL": "ON",
+        "BUILD_STATIC_LIBS": "ON"
+      }
+    },
+    {
+      "name": "arm-release",
+      "displayName": "ARM Release",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/arm-release",
+      "toolchainFile": "${sourceDir}/toolchain/toolchain.cmake",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CURL_USE_LIBPSL": "OFF",
+        "CURL_DISABLE_INSTALL": "ON",
+        "CURL_ZSTD": "OFF",
+        "BUILD_SHARED_LIBS": "OFF",
+        "BUILD_STATIC_CURL": "ON",
+        "BUILD_STATIC_LIBS": "ON"
+      }
+    },
+     {
+      "name": "debug",
+      "displayName": "Debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CURL_USE_LIBPSL": "OFF",
+	      "CURL_DISABLE_INSTALL": "ON",
+        "CURL_ZSTD": "OFF",
+        "BUILD_SHARED_LIBS": "OFF",
+        "BUILD_STATIC_CURL": "ON",
+        "BUILD_STATIC_LIBS": "ON"
+      }
+    },
+    {
+      "name": "release",
+      "displayName": "Release",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+	      "CURL_USE_LIBPSL": "OFF",
+        "CURL_DISABLE_INSTALL": "ON",
+        "CURL_ZSTD": "OFF",
+        "BUILD_SHARED_LIBS": "OFF",
+        "BUILD_STATIC_CURL": "ON",
+        "BUILD_STATIC_LIBS": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "arm-debug",
+      "configurePreset": "arm-debug"
+    },
+    {
+      "name": "arm-release",
+      "configurePreset": "arm-release"
+    },
+    {
+      "name": "debug",
+      "configurePreset": "debug"
+    },
+    {
+      "name": "release",
+      "configurePreset": "release"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+Index: Desktop/luipgeo/thirdparty/curl-8_22_0/CMakeLists.txt
+===================================================================
+--- CMakeLists.txt
++++ CMakeLists.txt
+@@ -833,7 +833,7 @@ if(_use_core_foundation_and_core_service
+ endif()
+ 
+ if(CURL_USE_OPENSSL)
+-  find_package(OpenSSL REQUIRED)
++  find_package(OpenSSL REQUIRED CONFIG)
+   set(_ssl_enabled ON)
+   set(USE_OPENSSL ON)
+ 

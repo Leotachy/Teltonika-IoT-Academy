@@ -1,0 +1,15 @@
+{
+  "services/ovpnmon": {
+    "description": "OpenVPN Monitoring permissions",
+    "read": {
+      "api": [
+        "/ovpnmon/*"
+      ]
+    },
+    "write": {
+      "api": [
+ 	"/ovpnmon/*"
+      ]
+    }
+  }
+}

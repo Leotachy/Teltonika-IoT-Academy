@@ -1,0 +1,50 @@
+#!/bin/sh /etc/rc.common
+
+USE_PROCD=1
+
+# Start after and stop before OpenVPN service
+START=95
+STOP=5
+
+# Test an OpenVPN section to see if it's an enabled server
+is_enabled_server() {
+
+	local section="$1"
+	local mode
+	
+	config_get mode "$section" 'mode' '' 
+ 
+	if [ "$mode" = 'server' ]; then
+	
+		local enabled
+		config_get enabled "$section" 'enable' '0'
+		
+		if [ "$enabled" -eq 1 ]; then
+			any_server_enabled=1
+		fi
+	
+	fi
+}
+
+start_service() {
+	
+        config_load 'openvpn'
+        
+        local any_server_enabled=0
+        config_foreach is_enabled_server openvpn
+
+	if [ "$any_server_enabled" -eq 1 ]; then
+	        procd_open_instance
+	        procd_set_param command lua /usr/lib/lua/openvpn_monitoring/main.lua
+        	procd_close_instance
+	fi
+}
+
+service_triggers() {
+	procd_add_reload_trigger "openvpn"
+}
+
+reload_service() {
+	stop
+	start
+}

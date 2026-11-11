@@ -1,0 +1,12 @@
+Index: tuya_iot_core_sdk-1.0.0/CMakeLists.txt
+===================================================================
+--- tuya_iot_core_sdk-1.0.0.orig/CMakeLists.txt
++++ tuya_iot_core_sdk-1.0.0/CMakeLists.txt
+@@ -92,3 +92,7 @@ message(STATUS " .. Build utility tools
+ message(STATUS " .. Disable PNG support  ........ = ${WITHOUT_PNG}"           )
+ message(STATUS " .. Installation prefix ......... = ${CMAKE_INSTALL_PREFIX}"  )
+ message(STATUS "------------------------------------------------------------ ")
++
++
++# Fake install target to get it to work with OpenWRT
++install(CODE "message(STATUS \"This is a fake install for tuya_iot_core_sdk\")")
